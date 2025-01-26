@@ -36,7 +36,7 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #060000;
 }
 @layer base {
   :root {
