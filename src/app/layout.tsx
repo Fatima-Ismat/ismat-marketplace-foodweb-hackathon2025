@@ -5,6 +5,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Inter } from "@next/font/google";
+import {ClerkProvider} from "@clerk/nextjs";
 
 const inter = Inter({
   weight: ["400", "500", "700"],
@@ -23,6 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     
+    <ClerkProvider>
       <html lang="en">
         <body className={`antialiased`}>
           
@@ -34,6 +36,6 @@ export default function RootLayout({
             
         </body>
       </html>
-    
+      </ClerkProvider>
   );
 }

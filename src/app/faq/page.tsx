@@ -82,7 +82,7 @@ const FAQPage: React.FC = () => {
           </div>
         </div>
 
-        <main className="max-w-[1320px] mx-auto px-[20px] lg:px-[60px] py-16 px-4">
+        <main className="max-w-[1320px] mx-auto px-[20px] lg:px-[60px] py-16">
           <h2 className="text-4xl font-bold text-center mb-8">
             Questions Looks Here
           </h2>

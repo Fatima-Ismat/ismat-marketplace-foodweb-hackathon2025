@@ -2,6 +2,15 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
+import {
+  
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs";
+
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -23,6 +32,8 @@ export default function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  
 
   return (
     <div
@@ -72,8 +83,9 @@ export default function Header() {
             <li className="hover:text-[#FF9F0D]">
               <Link href="/aboutus">About Us</Link>
             </li>
-            <li ref={dropdownRef} className="relative hover:text-[#FF9F0D]">
+
               {/* Dropdown Button */}
+            {/* <li ref={dropdownRef} className="relative hover:text-[#FF9F0D]">
               <button
                 className="flex items-center gap-1"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -81,22 +93,26 @@ export default function Header() {
                 Login <i className="bi bi-chevron-down"></i>
               </button>
               {/* Dropdown Menu */}
-              {isDropdownOpen && (
-                <ul className="absolute left-0 top-full mt-2 bg-white text-black shadow-lg rounded-lg w-48 z-30">
-                  <li className="hover:bg-gray-100 hover:text-[#FF9F0D]">
-                    <a href="/signin" className="block px-4 py-2">
+              {/* {isDropdownOpen && (
+                <ul className="absolute left-0 top-full mt-2 bg-white text-black shadow-lg rounded-lg w-48 z-30">  */}
+                  {/* <li className="hover:bg-gray-100 hover:text-[#FF9F0D]"> */}
+                    {/* <Link href="/signin" className="block px-4 py-2">
                       Sign In
-                    </a>
-                  </li>
-                  <li className="hover:bg-gray-100 hover:text-[#FF9F0D]">
-                    <a href="/signup" className="block px-4 py-2">
-                      Sign Up
-                    </a>
-                  </li>
+                    </Link>
+                  </li> */}
+                  {/* <li className="hover:bg-gray-100 hover:text-[#FF9F0D]">
+                    <Link href="/signup" className="block px-4 py-2">
+                    <UserButton/>
+                    </Link> */}
+                    
+            <Link href="/signup" className="text-white hover:text-[#FF9F0D] transition-colors" aria-label="User Profile">
+              <UserButton/>
+            </Link>
+                  {/* </li> */}
                 </ul>
-              )}
+              {/* )}
             </li>
-          </ul>
+          </ul> */}
 
           {/* Search Bar */}
           <form className="min-w-[250px] xl:min-w-[280px] bg-transparent mt-4 lg:mt-0">
