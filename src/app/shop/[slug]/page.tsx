@@ -46,6 +46,8 @@
 //     </div>
 //   );
 // }
+
+
 "use client"; // Next.js client-side component
 
 import { getFoodItemById } from "@/sanity/lib/data";
@@ -71,12 +73,33 @@ export default function FoodDetail({ params }: ProductPageProps) {
     fetchData();
   }, [slug]);
 
+  // const addToCart = (item: IFoodItem) => {
+  //   let cartItems = JSON.parse(localStorage.getItem("cart") || "[]");
+  //   cartItems.push(item);
+  //   localStorage.setItem("cart", JSON.stringify(cartItems));
+  //   alert("Item added to cart!"); // Optional alert
+  // };
+
   const addToCart = (item: IFoodItem) => {
-    let cartItems = JSON.parse(localStorage.getItem("cart") || "[]");
-    cartItems.push(item);
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-    alert("Item added to cart!"); // Optional alert
-  };
+    // Retrieve cart items from localStorage or initialize an empty array
+    let cartItems: IFoodItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    // Check if the item already exists in the cart
+    const existingProductIndex = cartItems.findIndex(cartItem => cartItem._id === item._id);
+
+    if (existingProductIndex > -1) {
+        // If the item exists, increment its quantity
+        cartItems[existingProductIndex].stock = (cartItems[existingProductIndex].stock || 1) + 1;
+    } else {
+        // If the item doesn't exist, add it to the cart with a quantity of 1
+        cartItems.push({ ...item, stock: 1 });
+    }
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    alert("Cart")
+};
+
 
   if (!foodItem) {
     return <div>Product not found</div>;
